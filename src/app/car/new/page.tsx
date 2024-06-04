@@ -1,5 +1,7 @@
+import LinkButton from '@/components/LinkButton'
 import NewCarForm from '@/components/NewCarForm'
 import prisma from '@/utils/prisma'
+import Link from 'next/link'
 
 const fetchBrands = async () => {
   const brands = await prisma.brand.findMany()
@@ -16,8 +18,8 @@ const NewCarPage = async () => {
   const models = await fetchModels()
 
   return (
-    <div>
-      New Car
+    <div className="min-h-screen bg-gray-100 p-5 ">
+      <LinkButton path='/' text='Home' />
       <NewCarForm brands={brands} models={models} />
     </div>
   )

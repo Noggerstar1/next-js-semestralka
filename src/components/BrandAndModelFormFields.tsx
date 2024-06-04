@@ -14,30 +14,49 @@ const BrandAndModelFormFields = ({
   const filteredModels = useMemo(() => {
     return models.filter((model) => model.brandId === brandId)
   }, [brandId, models])
+  
   return (
     <Fragment>
-      <select
-        name="brandId"
-        required={true}
-        id=""
-        value={brandId}
-        onChange={(e) => {
-          setBrandId(e.target.value)
-        }}
-      >
-        {brands.map((brand) => (
-          <option key={brand.id} value={brand.id}>
-            {brand.name}
-          </option>
-        ))}
-      </select>
-      <select name="modelId" required={true}>
-        {filteredModels.map((model) => (
-          <option key={model.id} value={model.id}>
-            {model.name}
-          </option>
-        ))}
-      </select>
+      <div className="mb-4 w-full">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="brandId">
+          Brand
+        </label>
+        <select
+          name="brandId"
+          id="brandId"
+          required
+          value={brandId}
+          onChange={(e) => {
+            setBrandId(e.target.value)
+          }}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        >
+          <option value="">Select a brand</option>
+          {brands.map((brand) => (
+            <option key={brand.id} value={brand.id}>
+              {brand.name}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="mb-4 w-full">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="modelId">
+          Model
+        </label>
+        <select
+          name="modelId"
+          id="modelId"
+          required
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        >
+          <option value="">Select a model</option>
+          {filteredModels.map((model) => (
+            <option key={model.id} value={model.id}>
+              {model.name}
+            </option>
+          ))}
+        </select>
+      </div>
     </Fragment>
   )
 }
